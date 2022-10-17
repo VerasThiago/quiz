@@ -1,0 +1,867 @@
+{
+	"info": {
+		"_postman_id": "bf8f5cfb-022a-4200-bc9d-4f0a223b805e",
+		"name": "TopTal",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7729124"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"veras\",\r\n    \"username\": \"2verass\",\r\n    \"email\": \"thiago@gmail.com\",\r\n    \"password\": \"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost/login/v0/user/register",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"login",
+								"v0",
+								"user",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.globals.set(\"TOKEN\", jsonData.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"thiago@gmail.com\",\r\n    \"password\": \"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost/login/v0/user/login",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"login",
+								"v0",
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{TOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"bfb676a3-3024-4ea1-b142-68ac3a4b87ec\",\r\n    \"password\": \"thiago\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost/login/v0/admin/update",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"login",
+								"v0",
+								"admin",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{TOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userid\": \"ac07c072-8305-4750-a9c2-2d73240765a4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost/login/v0/admin/delete",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"login",
+								"v0",
+								"admin",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Quiz",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{TOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Quiz de exatas2\",\r\n    \"Description\": \"Outro quiz random\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost/api/v0/quiz/user/create",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"v0",
+								"quiz",
+								"user",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{TOKEN}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost/api/v0/quiz/user/list",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"v0",
+								"quiz",
+								"user",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{TOKEN}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"8af4f04f-434d-4570-8727-69c4fac340c6\",\r\n    \"ispublished\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost/api/v0/quiz/user/update",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"v0",
+								"quiz",
+								"user",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{TOKEN}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"e2d0288d-4ec5-46b4-8d00-afa59414a02b\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost/api/v0/quiz/user/delete",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"v0",
+								"quiz",
+								"user",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Publish",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{TOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"41859abd-316f-403b-ae61-1a5e7ee6dec4\"\r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost/api/v0/quiz/user/publish",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"v0",
+								"quiz",
+								"user",
+								"publish"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Question",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{TOKEN}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"question\": {\r\n        \"name\": \"2 + 113122?\", \r\n        \"description\": \"Random description\",\r\n        \"quizid\": \"8af4f04f-434d-4570-8727-69c4fac340c6\",\r\n        \"type\": 1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost/api/v0/question/user/create",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"v0",
+								"question",
+								"user",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{TOKEN}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"quizid\": \"e3e731fb-dd26-4ae8-a646-4f2bfea14709\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost/api/v0/question/user/list/e61043f4-f900-4cdd-a69b-57f1954b77a2",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"v0",
+								"question",
+								"user",
+								"list",
+								"e61043f4-f900-4cdd-a69b-57f1954b77a2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{TOKEN}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"bc556014-c513-4162-bfb0-34e3be740213\",\r\n    \"name\": \"112323 - 2121321332?\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost/api/v0/question/user/update",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"v0",
+								"question",
+								"user",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{TOKEN}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"61c1daa9-9e2f-4582-9593-c9884058bdc9\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost/api/v0/question/user/delete",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"v0",
+								"question",
+								"user",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Option",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{TOKEN}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"value\": \"Maybe\",\r\n    \"correctness\": true,\r\n    \"questionid\":  \"9e91a2fc-8a73-4767-aa0a-844520b5bede\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost/api/v0/option/user/create",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"v0",
+								"option",
+								"user",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{TOKEN}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost/api/v0/option/user/list/9e91a2fc-8a73-4767-aa0a-844520b5bede",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"v0",
+								"option",
+								"user",
+								"list",
+								"9e91a2fc-8a73-4767-aa0a-844520b5bede"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{TOKEN}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"02a0ffa3-d456-4b13-88b4-5137102ccf05\",\r\n    \"value\": \"Dezenove\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost/api/v0/option/user/update",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"v0",
+								"option",
+								"user",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{TOKEN}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"3cfb9c4d-f9a0-411e-86a7-b01cb7744ac8\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost/api/v0/option/user/delete",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"v0",
+								"option",
+								"user",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Published",
+			"item": [
+				{
+					"name": "List",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{TOKEN}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost/api/v0/quiz/published/list",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"v0",
+								"quiz",
+								"published",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Open",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{TOKEN}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost/api/v0/quiz/published/open/41859abd-316f-403b-ae61-1a5e7ee6dec4",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"v0",
+								"quiz",
+								"published",
+								"open",
+								"41859abd-316f-403b-ae61-1a5e7ee6dec4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Submit",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{TOKEN}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"41859abd-316f-403b-ae61-1a5e7ee6dec4\",\r\n    \"questionList\": [\r\n        {\r\n            \"id\": \"69a7a1ba-e376-4934-92d7-825a7e984bbd\",\r\n            \"optionlist\": [\r\n                    \"e49b48ad-d9ed-408b-b0e5-1f323fb78eb8\",\r\n                    \"d47c11e8-c4dc-4baa-92ec-fb01683c6200\"\r\n            ]\r\n        },\r\n        {\r\n            \"id\": \"57d5461f-4bfb-46ff-ab6a-d8c2c6fb8f77\",\r\n            \"optionlist\": [\r\n                    \"4eb46a65-c688-4c55-b839-d4d846e71389\"\r\n            ]\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost/api/v0/quiz/published/submit",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"v0",
+								"quiz",
+								"published",
+								"submit"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Submission",
+			"item": [
+				{
+					"name": "User List",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost/api/v0/submission/user/list",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"v0",
+								"submission",
+								"user",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Report",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost/api/v0/submission/user/report/5b45bcd2-a54e-4ca5-af79-e2d926f29a38",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"v0",
+								"submission",
+								"user",
+								"report",
+								"5b45bcd2-a54e-4ca5-af79-e2d926f29a38"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Quiz List",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost/api/v0/submission/list/05e41d9d-0505-4b52-86a6-aed0f17030e9",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"v0",
+								"submission",
+								"list",
+								"05e41d9d-0505-4b52-86a6-aed0f17030e9"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
