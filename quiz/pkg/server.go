@@ -86,7 +86,7 @@ func (s *Server) Run() error {
 					apiV0QuizUser.POST("/create", s.CreateUserQuizAPI.Handler)
 					apiV0QuizUser.DELETE("/delete", s.DeleteUserQuizAPI.Handler)
 					apiV0QuizUser.PUT("/update", s.UpdateUserQuizAPI.Handler)
-					apiV0QuizUser.POST("/publish", s.PublishUserQuizAPI.Handler)
+					apiV0QuizUser.PUT("/publish", s.PublishUserQuizAPI.Handler)
 				}
 				apiV0QuizPublished := apiV0Quiz.Group("/published").Use(s.AuthAPI.Handler())
 				{

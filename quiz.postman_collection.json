@@ -315,7 +315,7 @@
 				{
 					"name": "Publish",
 					"request": {
-						"method": "POST",
+						"method": "PUT",
 						"header": [
 							{
 								"key": "Authorization",
